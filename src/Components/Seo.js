@@ -4,7 +4,7 @@ const Seo = ({tittle, description}) => {
     return ( 
         <Helmet>
             <tittle>{tittle}</tittle>
-            <meta name="description">{description}</meta>
+            <meta description={description} />
         </Helmet>
      );
 }
