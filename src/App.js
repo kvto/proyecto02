@@ -1,9 +1,13 @@
 import PublicRoutes from './Routes/PublicRoutes';
-
+import PrivateRoutes from './Routes/PrivateRoutes';
+import { AuthProvider } from './Context/Auth';
 function App() {
   return (
     <>
-    <PublicRoutes />
+    <AuthProvider>
+    <PublicRoutes />  
+    <PrivateRoutes />
+    </AuthProvider>
     </>
   );
 }

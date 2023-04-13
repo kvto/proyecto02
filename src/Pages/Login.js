@@ -1,15 +1,23 @@
-import { useReducer } from "react";
-import { userReducer, initialState } from "../Reducers/user";
-import Seo from "../Components/Seo";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-const Login = () => {
+import { useReducer, useContext } from "react";
+import { userReducer, initialState } from "../Reducers/user";
+import { AuthContext } from "../Context/Auth";
+import {useHistory} from "react-router-dom"
+import Seo from "../Components/Seo";
 
+const Login = () => {
+    const history = useHistory();
     const [state, dispatch] = useReducer(userReducer, initialState);
+
+    const {authenticate} = useContext(AuthContext);
 
     const handlerSubmit = e => {
         e.preventDefault();
         const [ user, password] = e.target; 
         dispatch({type : "SET_USER", payload: {user: user.value, password: password.value}});
+        const serverResponse = "myToken";
+        authenticate(serverResponse);
+        history.push("/dashboard");
     }
 
 
